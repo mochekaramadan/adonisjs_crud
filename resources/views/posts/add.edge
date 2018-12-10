@@ -1,0 +1,40 @@
+@layout('main')
+
+@section('content')
+<div class="form-group">
+    <div class="row">
+        <a href="/post" class="btn btn-dark">Back</a>
+    </div>
+</div>
+<form action="/post" method="post">
+    {{ csrfField() }}
+    <div class="form-group">
+        <div class="row">
+            <div class="col-md-4">
+                <label class="text-light">Title</label>
+            </div>
+            <div class="col-md-8">
+                <input class="form-control" type="text" name="title" value="{{old('title', '')}}" placeholder="Title">
+                {{ elIf('<span class="text-danger">$self</span>', getErrorFor('title'), hasErrorFor('title')) }}
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="row">
+            <div class="col-md-4">
+                <label class="text-light">Content</label>
+            </div>
+            <div class="col-md-8">
+                <textarea class="form-control" name="content"  placeholder="Content">{{old('content', '')}}</textarea>
+                {{ elIf('<span class="text-danger">$self</span>', getErrorFor('content'), hasErrorFor('content')) }}
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-8">
+            <button class="btn btn-primary" type="submit">Add</button>
+        </div>
+    </div>
+</form>
+@endsection
